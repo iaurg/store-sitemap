@@ -4,9 +4,9 @@ import { isCanonical, Route } from '../resources/route'
 import { getSiteMapXML } from '../resources/site'
 import { getCurrentDate } from '../resources/utils'
 
-const updateRouteList = async (ctx: Context, route: Route[]) => {
-  if (route.length > 0) {
-    return ctx.renderClient.post('/canonical', {entries: route})
+const updateRouteList = async (ctx: Context, routes: Route[]) => {
+  if (routes.length > 0) {
+    return ctx.renderClient.post('/canonical', {entries: routes})
   }
 }
 

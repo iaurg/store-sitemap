@@ -24,6 +24,7 @@ export class Route {
   public id: string
   public path: string
   public canonical?: string
+  public version: 'v1' = 'v1'
 
   constructor(
     ctx: Context,

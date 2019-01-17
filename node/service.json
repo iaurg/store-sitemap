@@ -1,7 +1,7 @@
 {
   "memory": 512,
   "ttl": 60,
-  "timeout": 60,
+  "timeout": 15,
   "routes": {
     "sitemap": {
       "path": "/sitemap.xml",
@@ -34,6 +34,10 @@
     "robots": {
       "path": "/robots.txt",
       "public": true
+    },
+    "canonical": {
+      "path": "/canonical",
+      "public": false
     }
   }
 }

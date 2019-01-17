@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio'
 import { forEach, map, values } from 'ramda'
 
-import { getCurrentDate } from '../resources/utils'
+import { currentDate } from '../resources/utils'
 import { Context, Middleware } from '../utils/helpers'
 
 export const userSitemap: Middleware = async (ctx: Context) => {
@@ -17,7 +17,7 @@ export const userSitemap: Middleware = async (ctx: Context) => {
     const xmlUserRoutes = map((route: any) =>
       `<url>
         <loc>https://${forwardedHost}${route.path}</loc>
-        <lastmod>${getCurrentDate()}</lastmod>
+        <lastmod>${currentDate()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.4</priority>
       </url>`, values(userRoutes['vtex.admin-pages']))

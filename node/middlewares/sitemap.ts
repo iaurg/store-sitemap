@@ -2,13 +2,13 @@ import * as cheerio from 'cheerio'
 import { forEach } from 'ramda'
 
 import { isCanonical, Route } from '../resources/route'
-import { getCurrentDate } from '../resources/utils'
+import { currentDate } from '../resources/utils'
 import { Context, Middleware } from '../utils/helpers'
 
 const xmlSitemapItem = (loc: string) => `
   <sitemap>
     <loc>${loc}</loc>
-    <lastmod>${getCurrentDate()}</lastmod>
+    <lastmod>${currentDate()}</lastmod>
   </sitemap>
 `
 

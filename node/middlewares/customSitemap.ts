@@ -2,7 +2,7 @@ import { Apps } from '@vtex/api'
 import * as cheerio from 'cheerio'
 import { compose, forEach, keys, map, not, path, reject } from 'ramda'
 
-import { getCurrentDate, notFound } from '../resources/utils'
+import { currentDate, notFound } from '../resources/utils'
 import { Context, Maybe, Middleware } from '../utils/helpers'
 
 const SITEMAP_FILE_PATH = 'dist/vtex.store-sitemap/sitemap.json'
@@ -18,7 +18,7 @@ const jsonToXml = (url: URL): string => {
   const $ = cheerio.load('<url></url>', cheerioOptions)
   $('url').append(
     `<loc>${url.loc}</loc>`,
-    `<lastmod>${getCurrentDate()}</lastmod>`,
+    `<lastmod>${currentDate()}</lastmod>`,
     '<changefreq>weekly</changefreq>',
     '<priority>0.4</priority>'
   )

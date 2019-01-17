@@ -19,10 +19,9 @@ const xmlSitemapItem = (loc: string) => {
 }
 
 export const sitemap = async (ctx: Context) => {
-  const {vtex: {account}} = ctx
+  const {vtex: {account}, dataSources: {sitemap: sitemapDataSource, canonicals}} = ctx
   const forwardedHost = ctx.get('x-forwarded-host')
-  const routeList: Route[] = []
-  const {data: originalXML} = await getSiteMapXML(ctx)
+  const {data: originalXML} = await sitemapDataSource.fromLegacy()
   const normalizedXML = originalXML.replace(new RegExp(`${account}.vtexcommercestable.com.br`, 'g'), forwardedHost)
   const $ = cheerio.load(normalizedXML, {
     decodeEntities: false,

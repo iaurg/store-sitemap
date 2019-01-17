@@ -1,14 +1,15 @@
 {
   "dependencies": {
     "@vtex/api": "^1.5.2",
-    "axios": "^0.18.0",
     "bluebird": "^3.5.0",
+    "apollo-datasource-rest": "^0.2.1",
+    "apollo-server-caching": "^0.2.1",
     "cheerio": "^1.0.0-rc.2",
+    "graphql": "^14.1.1",
     "ramda": "^0.25.0",
     "route-parser": "^0.0.5"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/bluebird": "^3.5.8",
     "@types/bluebird-global": "^3.5.3",
     "@types/cheerio": "^0.22.8",

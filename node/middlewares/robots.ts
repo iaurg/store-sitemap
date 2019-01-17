@@ -1,7 +1,8 @@
-import {getRobotsTxt} from '../resources/site'
+import { Context } from '../utils/helpers'
 
 export const robots = async (ctx: Context) => {
-  const {data} = await getRobotsTxt(ctx)
+  const {dataSources: {robots: robotsDataSource}} = ctx
+  const {data} = await robotsDataSource.fromLegacy()
   ctx.set('Content-Type', 'text/plain')
   ctx.body = data
 }

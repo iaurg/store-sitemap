@@ -12,8 +12,8 @@ const routeIdToStoreRoute: any = {
     id: 'store/department',
     originalSitemapPathToSystem: (path: string) => `${path}/d`,
     path: '/:department/d',
+  },
   }
-}
 
 const removeHost = (fullPath: string, host: string) => fullPath.substring(fullPath.indexOf(host) + host.length)
 
@@ -28,7 +28,7 @@ export class Route {
 
   constructor(
     ctx: Context,
-    path: string,
+    path: string
   ) {
     const forwardedHost = ctx.get('x-forwarded-host')
     const route = {

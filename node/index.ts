@@ -25,7 +25,7 @@ const statusLabel = (status: number) =>
 
 const log = (
   {vtex: {account, workspace, route: {id}}, url, method, status}: Context,
-  millis: number,
+  millis: number
 ) =>
   `${new Date().toISOString()}\t${account}/${workspace}:${id}\t${status}\t${method}\t${url}\t${millis}ms`
 

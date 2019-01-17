@@ -3,11 +3,8 @@
   "vendor": "vtex",
   "version": "0.3.0",
   "title": "Sitemap",
-  "description": "Proxy to sitemap.xml",
+  "description": "Sitemap for vtex.store",
   "mustUpdateAt": "2019-08-01",
-  "dependencies": {
-    "vtex.render-server": "7.x"
-  },
   "peerDependencies": {
     "vtex.store": "2.x"
   },
@@ -31,9 +28,6 @@
     },
     {
       "name": "colossus-write-logs"
-    },
-    {
-      "name": "vtex.render-server:upload-canonical-routes"
     },
     {
       "name": "read-workspace-apps"

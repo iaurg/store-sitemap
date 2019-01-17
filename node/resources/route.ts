@@ -1,6 +1,6 @@
 import * as RouteParser from 'route-parser'
 
-const identity = <T>(x: T) => x
+import { Context } from '../utils/helpers'
 
 const routeIdToStoreRoute: any = {
   brands: {
@@ -23,8 +23,7 @@ export class Route {
   public params?: Record<string, any>
   public id: string
   public path: string
-  public canonical?: string
-  public version: 'v1' = 'v1'
+  public canonical: string
 
   constructor(
     ctx: Context,

@@ -1,14 +1,8 @@
 import * as cheerio from 'cheerio'
 import { retry } from '../resources/retry'
 import { isCanonical, Route } from '../resources/route'
-import { getSiteMapXML } from '../resources/site'
 import { getCurrentDate } from '../resources/utils'
-
-const updateRouteList = async (ctx: Context, routes: Route[]) => {
-  if (routes.length > 0) {
-    return ctx.renderClient.post('/canonical', {entries: routes})
-  }
-}
+import { Context } from '../utils/helpers'
 
 const xmlSitemapItem = (loc: string) => {
   return `
@@ -33,24 +27,17 @@ export const sitemap = async (ctx: Context) => {
       xmlSitemapItem(`https://${forwardedHost}/sitemap-user-routes.xml`)
     )
   }
-  const canonical = isCanonical(ctx)
 
+  const routeList: Route[] = []
+  const canonical = isCanonical(ctx)
   $('loc').each((_, loc) => {
     const canonicalUrl = $(loc).text()
     if (canonical) {
-      const route = new Route(ctx, canonicalUrl)
-      routeList.push(route)
+      routeList.push(new Route(ctx, canonicalUrl))
     }
   })
 
-  if (routeList.length > 0) {
-    retry(updateRouteList.bind(null, ctx, routeList))
-    .catch((err: Error) => {
-      console.error(err)
-      ctx.logger.error(err, {message: 'Could not update route list'})
-      return
-    })
-  }
+  forEach(canonicals.save, routeList)
 
   ctx.set('Content-Type', 'text/xml')
   ctx.body = $.xml()

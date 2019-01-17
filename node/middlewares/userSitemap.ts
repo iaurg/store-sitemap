@@ -1,11 +1,12 @@
 import * as cheerio from 'cheerio'
-import {forEach, map, values} from 'ramda'
-import {RoutesDataSource} from '../resources/RoutesDataSource'
-import {getCurrentDate, notFound} from '../resources/utils'
+import { forEach, map, values } from 'ramda'
 
-export const userSitemap = async (ctx: Context) => {
-  const routes = new RoutesDataSource(ctx.vtex, {timeout: 2000})
-  const userRoutes = await routes.getUserRoutes().catch(notFound(null))
+import { getCurrentDate } from '../resources/utils'
+import { Context, Middleware } from '../utils/helpers'
+
+export const userSitemap: Middleware = async (ctx: Context) => {
+  const {dataSources: {routes}} = ctx
+  const userRoutes = await routes.userRoutes().catch(() => null)
   const forwardedHost = ctx.get('x-forwarded-host')
   const $ = cheerio.load('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>', {
     decodeEntities: false,

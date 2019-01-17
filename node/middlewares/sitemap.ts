@@ -3,20 +3,19 @@ import { forEach } from 'ramda'
 
 import { isCanonical, Route } from '../resources/route'
 import { getCurrentDate } from '../resources/utils'
-import { Context } from '../utils/helpers'
+import { Context, Middleware } from '../utils/helpers'
 
-const xmlSitemapItem = (loc: string) => {
-  return `
+const xmlSitemapItem = (loc: string) => `
   <sitemap>
     <loc>${loc}</loc>
     <lastmod>${getCurrentDate()}</lastmod>
-  </sitemap>`
-}
+  </sitemap>
+`
 
-export const sitemap = async (ctx: Context) => {
+export const sitemap: Middleware = async (ctx: Context) => {
   const {vtex: {account}, dataSources: {sitemap: sitemapDataSource, canonicals}} = ctx
   const forwardedHost = ctx.get('x-forwarded-host')
-  const {data: originalXML} = await sitemapDataSource.fromLegacy()
+  const originalXML = await sitemapDataSource.fromLegacy()
   const normalizedXML = originalXML.replace(new RegExp(`${account}.vtexcommercestable.com.br`, 'g'), forwardedHost)
   const $ = cheerio.load(normalizedXML, {
     decodeEntities: false,

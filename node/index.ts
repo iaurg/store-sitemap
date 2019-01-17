@@ -1,5 +1,6 @@
-import { Apps, hrToMillis, MetricsAccumulator } from '@vtex/api'
-import * as Bluebird from 'bluebird'
+import 'bluebird-global'
+
+import { hrToMillis, MetricsAccumulator } from '@vtex/api'
 import { map } from 'ramda'
 
 import { dataSources, initialize } from './dataSources'
@@ -10,10 +11,8 @@ import { sitemap } from './middlewares/sitemap'
 import { userSitemap } from './middlewares/userSitemap'
 import { Context, Middleware } from './utils/helpers'
 
-
 (global as any).metrics = new MetricsAccumulator()
 
-global.Promise = Bluebird
 Promise.config({
   longStackTraces: false,
   warnings: true,
@@ -34,9 +33,6 @@ const log = (
 const prepare = (middleware: Middleware) => async (ctx: Context) => {
   const {vtex: {production, route: {id}}} = ctx
   const start = process.hrtime()
-
-  ctx.apps = new Apps(ctx.vtex, {timeout: 3000})
-
 
   ctx.dataSources = dataSources()
   initialize(ctx)

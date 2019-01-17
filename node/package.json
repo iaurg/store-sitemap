@@ -1,9 +1,10 @@
 {
   "dependencies": {
-    "@vtex/api": "^1.5.2",
-    "bluebird": "^3.5.0",
+    "@vtex/api": "^1.5.4",
     "apollo-datasource-rest": "^0.2.1",
     "apollo-server-caching": "^0.2.1",
+    "bluebird": "^3.5.0",
+    "bluebird-global": "^1.0.1",
     "cheerio": "^1.0.0-rc.2",
     "graphql": "^14.1.1",
     "ramda": "^0.25.0",

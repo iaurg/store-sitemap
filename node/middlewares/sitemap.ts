@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio'
-import { retry } from '../resources/retry'
+import { forEach } from 'ramda'
+
 import { isCanonical, Route } from '../resources/route'
 import { getCurrentDate } from '../resources/utils'
 import { Context } from '../utils/helpers'

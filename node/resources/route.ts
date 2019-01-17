@@ -1,3 +1,4 @@
+import { identity } from 'ramda'
 import * as RouteParser from 'route-parser'
 
 import { Context } from '../utils/helpers'
@@ -13,7 +14,7 @@ const routeIdToStoreRoute: any = {
     originalSitemapPathToSystem: (path: string) => `${path}/d`,
     path: '/:department/d',
   },
-  }
+}
 
 const removeHost = (fullPath: string, host: string) => fullPath.substring(fullPath.indexOf(host) + host.length)
 
